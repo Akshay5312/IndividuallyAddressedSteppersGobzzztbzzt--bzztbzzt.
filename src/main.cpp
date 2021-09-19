@@ -7,9 +7,11 @@ void setup() {
 
 }
 
+
 void loop() {
   // put your main code here, to run repeatedly:
-  float Target[2] = {0,1};
-  Base.IK(Target);
+    float Target[2] = {0,1};
+    Base.IK(Target);
+    
 
 }

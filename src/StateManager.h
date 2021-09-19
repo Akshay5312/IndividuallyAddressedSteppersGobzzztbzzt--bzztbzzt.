@@ -50,6 +50,7 @@ float* localIK(float* X, float* target, float* currentMotorPos);
 float* IKSupplement(float* STIN);
 
 CommsPacket IK(float* target){
+
     CommsPacket Temp = CurrentSend;
 
     state = localFK(currintU);
@@ -61,12 +62,19 @@ CommsPacket IK(float* target){
     for( int i = 1; i < CommsSteps; i++){
         for(int j = 0; j < actuatorCount; j++){
             tempintU[j] += Temp.U[i-1][j]*deltaT;
+
+            CommsManager->localStepperManager->DeviceIn();
+
         }
         Temp.U[i] = localIK(localFK(tempintU), target, tempintU);
         Temp.t[i] = millis()-CommsManager->startMillis+i*deltaT;
     }
     CurrentSend = Temp;
+    
+    
     return CurrentSend;
+
+
 }
 
 };

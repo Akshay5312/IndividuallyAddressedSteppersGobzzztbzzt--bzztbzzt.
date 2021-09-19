@@ -3,12 +3,12 @@
 
 class perComms{
 private: 
-DImanager *localStepperManager;
     int actuatorSize;
     CommsPacket* CurrentSend; 
     int StartIndex = 1; 
     float* pos;   
 public:
+DImanager *localStepperManager;
 int startMillis;
 perComms();
 perComms(int ActuatorSize, CommsPacket *CurrSen){
